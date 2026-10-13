@@ -120,10 +120,7 @@ def ask_question(request: QuestionRequest):
 
     question = request.question.strip()
 
-    logger.info(
-        "Received question: %s",
-        question
-    )
+    logger.info("Received a question request")
 
 
     # --------------------------------------------------------
