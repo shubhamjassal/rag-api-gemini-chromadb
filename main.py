@@ -98,8 +98,15 @@ def home():
 
 @app.get("/health")
 def health():
+    status = health_check()
 
-    return health_check()
+    if status["chroma"]["status"] != "healthy":
+        raise HTTPException(
+            status_code=503,
+            detail=status
+        )
+
+    return status
 
 
 # ============================================================

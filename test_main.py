@@ -102,3 +102,21 @@ def test_successful_ask_response(monkeypatch):
     assert data["sources"][0]["page"] == 2
     assert data["usage"]["total_tokens"] == 120
     assert data["latency_seconds"] >= 0
+
+def test_unhealthy_health_endpoint_returns_503(monkeypatch):
+    import main
+
+    def fake_health_check():
+        return {
+            "chroma": {
+                "status": "unhealthy",
+                "error": "Simulated database failure",
+            }
+        }
+
+    monkeypatch.setattr(main, "health_check", fake_health_check)
+
+    response = client.get("/health")
+
+    assert response.status_code == 503
+    assert response.json()["detail"]["chroma"]["status"] == "unhealthy"
