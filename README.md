@@ -192,14 +192,14 @@ The project includes a five-question evaluation dataset and a benchmark comparin
 
 ### Previously measured results
 
+These results are preliminary and based on a five-question evaluation dataset. They measure retrieval behavior only on the current sample and should not be interpreted as evidence of production-level retrieval accuracy or answer quality. Results may differ with a larger, more diverse dataset.
+
 | TOP_K | Hit Rate | Precision | Recall | MRR |
 |---:|---:|---:|---:|---:|
 | 1 | 0.400 | 0.400 | 0.400 | 0.400 |
 | 3 | 1.000 | 0.500 | 1.000 | 0.667 |
 | 5 | 1.000 | 0.417 | 1.000 | 0.667 |
 | 10 | 1.000 | 0.213 | 1.000 | 0.667 |
-
-These are preliminary results from a small dataset, not a production-scale evaluation.
 
 ### What the results suggest
 
@@ -218,7 +218,7 @@ Run the automated test suite:
 python -m pytest -q
 ```
 
-The previously recorded test run reported **7 passed**. It also reported three dependency deprecation warnings. Run the tests again against your current environment to verify the latest result.
+The latest verified test run reported **7 passed, 2 warnings** in the review environment. Both warnings concern deprecated APIs in dependencies (ChromaDB and the Google GenAI SDK); neither caused a test failure. Results may vary with dependency versions and Python environments.
 
 ## Limitations
 
