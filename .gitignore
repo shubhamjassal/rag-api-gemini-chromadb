@@ -11,6 +11,7 @@ __pycache__/
 .venv/
 venv/
 env/
+.venv*/
 
 # Local databases and generated data
 chroma_db/
