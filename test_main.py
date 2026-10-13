@@ -24,6 +24,17 @@ def test_empty_question_rejected():
 
     assert response.status_code == 422
 
+
+def test_whitespace_only_question_rejected():
+    response = client.post(
+        "/ask",
+        json={"question": "   \t  "}
+    )
+
+    assert response.status_code == 400
+    assert response.json()["detail"] == "Question cannot be empty."
+
+
 def test_question_too_long_rejected():
     response = client.post(
         "/ask",
