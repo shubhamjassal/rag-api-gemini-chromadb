@@ -314,7 +314,9 @@ Question:
             "Answer generation failed."
         ) from e
 
-
+    answer = (response.text or "").strip()
+    if not answer:
+        raise RAGError("The model returned an empty answer.")
     # --------------------------------------------------------
     # 7. Prepare sources
     # --------------------------------------------------------
@@ -344,7 +346,7 @@ Question:
     # --------------------------------------------------------
 
     return {
-        "answer": response.text,
+        "answer": answer,
 
         "context": context,
 
